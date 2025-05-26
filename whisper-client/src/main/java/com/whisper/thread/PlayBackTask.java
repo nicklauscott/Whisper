@@ -12,17 +12,12 @@ public class PlayBackTask implements Runnable{
 
     @Override
     public void run() {
-        try {
-            Thread.sleep(3000);
-            if (networkStream.isConnected()) {
-                System.out.println("Audio playback started");
-                AudioPlayBack playBack = new AudioPlayBack(networkStream);
-                playBack.start();
-            } else {
-                System.out.println("PlayBackTask -> Error server not connected");
-            }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        if (networkStream.isConnected()) {
+            System.out.println("Audio playback started");
+            AudioPlayBack playBack = new AudioPlayBack(networkStream);
+            playBack.start();
+        } else {
+            System.out.println("PlayBackTask -> Error server not connected");
         }
     }
 }

@@ -51,7 +51,7 @@ object HttpClientWrapper {
 
         runBlocking {
             try {
-                client.webSocket(socketAddress ?: "ws://localhost:8080/voip/$id") {
+                client.ws(socketAddress ?: "ws://localhost:8080/voip/$id") {
                     isStreaming.set(true)
 
                     val sendJob = launch {
@@ -97,7 +97,7 @@ object HttpClientWrapper {
 
     @JvmStatic
     fun setUrl(url: String) {
-        this.url = url.replace("https", "wss").dropLast(1)
+        this.url = url.replace("https", "wss").dropLastWhile { it == '/' }
     }
 
     @JvmStatic

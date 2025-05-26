@@ -30,16 +30,15 @@ public class Whisper {
         var text = new StringBuilder();
         for (int i = 0; i < 5; i ++) {
             text.append(".");
-            System.out.println("\rWaiting for server" + text);
-            Thread.sleep(10);
+            System.out.print("\rWaiting for server" + text);
+            Thread.sleep(500);
             if (httpClient.isConnected()) break;
         }
 
         if (httpClient.isConnected()) {
-            System.out.println("Connected to Whisper server");
+            System.out.println("\nConnected to Whisper server");
         } else {
-            httpClient.stop();
-            executorService.close();
+            System.out.println("\nCouldn't connected to Whisper server");
             System.exit(0);
         }
 

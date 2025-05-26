@@ -27,10 +27,6 @@ public class NetworkStream {
         HttpClientWrapper.setUrl(url);
     }
 
-    public String getUrl() {
-        return HttpClientWrapper.getUrl();
-    }
-
     public void stop() {
         HttpClientWrapper.stopSendingAndReceiving();
     }
