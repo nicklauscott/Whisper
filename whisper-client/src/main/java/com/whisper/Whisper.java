@@ -15,6 +15,13 @@ public class Whisper {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+        System.out.println("Enter server url or press enter to use the default");
+        System.out.println("url: ");
+        var url = scanner.nextLine();
+        if (!url.isBlank()) {
+            httpClient.setUrl(url.strip());
+        }
+
         ExecutorService executorService = Executors.newCachedThreadPool();
         Thread start = new Thread(httpClient::startStreaming);
         Thread playback = new Thread(new PlayBackTask(httpClient));

@@ -23,6 +23,14 @@ public class NetworkStream {
         return HttpClientWrapper.isStreaming();
     }
 
+    public void setUrl(String url) {
+        HttpClientWrapper.setUrl(url);
+    }
+
+    public String getUrl() {
+        return HttpClientWrapper.getUrl();
+    }
+
     public void stop() {
         HttpClientWrapper.stopSendingAndReceiving();
     }

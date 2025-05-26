@@ -20,7 +20,11 @@ object HttpClientWrapper {
         }
     }
 
-    private val id = ('A'..'z').random() + (0..9).random()
+    private var url: String? = null
+    private val id = ('A'..'z').random().toString() + (0..9).random()
+    private val socketAddress: String?
+        get() = if (url == null) null else "$url/voip/$id"
+
     private var scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private val sendingByteChannel = Channel<ByteArray>(Channel.UNLIMITED)
@@ -47,12 +51,7 @@ object HttpClientWrapper {
 
         runBlocking {
             try {
-                client.webSocket(
-                    method = HttpMethod.Post,
-                    path = "/voip/$id",
-                    host = "localhost",
-                    port = 8080
-                ) {
+                client.webSocket(socketAddress ?: "ws://localhost:8080/voip/$id") {
                     isStreaming.set(true)
 
                     val sendJob = launch {
@@ -95,6 +94,14 @@ object HttpClientWrapper {
         receivingQueue.clear()
         resetScope()
     }
+
+    @JvmStatic
+    fun setUrl(url: String) {
+        this.url = url.replace("https", "wss").dropLast(1)
+    }
+
+    @JvmStatic
+    fun getUrl(): String = url ?: "Url not set"
 
     private fun resetScope() {
         scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
