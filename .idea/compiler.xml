@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="whisper-client.src.main.whisper-network.main" target="21" />
+      <module name="whisper-client.src.main.whisper-network.test" target="21" />
+      <module name="wisper-client" target="21" />
+      <module name="wisper-client.main" target="21" />
+      <module name="wisper-client.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
