@@ -1,0 +1,15 @@
+# Ignore IDE configuration files
+.idea/** linguist-vendored
+
+# Ignore macOS system files
+.DS_Store linguist-generated
+
+# Ignore IntelliJ project files
+Whisper.iml linguist-generated
+
+# Ignore audio test files
+WHISPER_SERVER_test.pcm linguist-generated
+
+# Ignore build directories
+whisper-client/build/** linguist-generated
+whisper-server/build/** linguist-generated
